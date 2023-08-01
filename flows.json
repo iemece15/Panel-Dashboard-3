@@ -1,0 +1,111 @@
+[
+    {
+        "id": "99e88937bac14f45",
+        "type": "tab",
+        "label": "Marca de tiempo",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f7c423770fa1ded0",
+        "type": "inject",
+        "z": "99e88937bac14f45",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 120,
+        "y": 100,
+        "wires": [
+            [
+                "ea17a701be3e9519"
+            ]
+        ]
+    },
+    {
+        "id": "423c1d9e8de235cc",
+        "type": "debug",
+        "z": "99e88937bac14f45",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 480,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ea17a701be3e9519",
+        "type": "function",
+        "z": "99e88937bac14f45",
+        "name": "function 1",
+        "func": "// Lo que está después de \"//\" son comentarios \n// Crea un objeto Date a partir del msg.payload enviado por timestamp\n var date = new Date(msg.payload);\n// Cambia el payload para que sea una fecha con formato\nmsg.payload = date.toString();\n// Regresa el mensaje para que se envíe al siguiente nodo return msg;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 300,
+        "y": 100,
+        "wires": [
+            [
+                "423c1d9e8de235cc",
+                "e820321c1ced44fe"
+            ]
+        ]
+    },
+    {
+        "id": "e820321c1ced44fe",
+        "type": "ui_text",
+        "z": "99e88937bac14f45",
+        "group": "613879a81c6fe9da",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Actual:",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 470,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "613879a81c6fe9da",
+        "type": "ui_group",
+        "name": "Fecha y hora",
+        "tab": "742b7ed870141a85",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "742b7ed870141a85",
+        "type": "ui_tab",
+        "name": "Fecha",
+        "icon": "dashboard",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
